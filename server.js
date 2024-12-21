@@ -21,17 +21,17 @@ app.use(cookieParser());
 // Connect to database
 connectToDatabase();
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 // Route handling
 app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/messages', messageRoutes); // Message routes
 app.use('/api/user', userRoutes); // User routes
 
-app.use(express.static(path.join(__dirname ,"/fronted/dist")))
+// app.use(express.static(path.join(__dirname ,"/fronted/dist")))
 
-app.get("*" ,(req,res)=>{
-  res.sendFile(path.join(__dirname ,"frontend", "dist", "index.html"));
-})
+// app.get("*" ,(req,res)=>{
+//   res.sendFile(path.join(__dirname ,"frontend", "dist", "index.html"));
+// })
 
 // Server
 server.listen(PORT, () => {
