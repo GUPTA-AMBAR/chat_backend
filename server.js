@@ -35,7 +35,7 @@ app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/messages', messageRoutes); // Message routes
 app.use('/api/user', userRoutes); // User routes
 
-app.use(express.static(path.join(__dirname ,"/fronted/dist")));
+// app.use(express.static(path.join(__dirname ,"/fronted/dist")));
 
 
 // app.get("*" ,(req,res)=>{
