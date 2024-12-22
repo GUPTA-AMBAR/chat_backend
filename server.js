@@ -1,6 +1,7 @@
 import path from "path";
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'; 
 import { router as authRoutes } from './routes/auth.routes.js';
 import { router as messageRoutes } from './routes/message.routes.js';
 import { router as userRoutes } from './routes/user.routes.js';
@@ -14,9 +15,16 @@ console.log();
 
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+  origin: 'https://chat-frontend-ad9z.vercel.app', 
+  methods: ['GET', 'POST'],
+  credentials: true, 
+};
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 
 // Connect to database
 connectToDatabase();
@@ -27,7 +35,8 @@ app.use('/api/auth', authRoutes); // Authentication routes
 app.use('/api/messages', messageRoutes); // Message routes
 app.use('/api/user', userRoutes); // User routes
 
-app.use(express.static(path.join(__dirname ,"/fronted/dist")))
+app.use(express.static(path.join(__dirname ,"/fronted/dist")));
+
 
 app.get("*" ,(req,res)=>{
   res.sendFile(path.join(__dirname ,"frontend", "dist", "index.html"));
